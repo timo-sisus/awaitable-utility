@@ -138,13 +138,6 @@ namespace Sisus
 				completionSource.Reset();
 				return awaitable;
 			}
-
-			internal static Awaitable<TResult> Container()
-			{
-				var awaitable = completionSource.Awaitable;
-				completionSource.Reset();
-				return awaitable;
-			}
 		}
 	}
 }

@@ -62,7 +62,7 @@ namespace Sisus
 		public static async Awaitable<(TResult1 result1, TResult2 result2, TResult3 result3)>
 			WhenAll<TResult1, TResult2, TResult3>
 				(Awaitable<TResult1> awaitable1, Awaitable<TResult2> awaitable2, Awaitable<TResult3> awaitable3)
-					=> (await awaitable1, await awaitable2, await awaitabl3);
+					=> (await awaitable1, await awaitable2, await awaitable3);
 
 		/// <summary>
 		/// Gets an <see cref="Awaitable{}"/> that will complete when all the supplied awaitables have completed.

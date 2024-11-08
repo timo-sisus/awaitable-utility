@@ -1,15 +1,31 @@
 #if UNITY_2023_1_OR_NEWER
 using UnityEngine;
 
-namespace Sisus.Init.Internal
+namespace Sisus
 {
 	/// <summary>
-	/// Contains a collection of utility methods related to <see cref="Awaitable{TResult}"/>.
+	/// Utility methods for <see cref="Awaitable"/> and <see cref="Awaitable{TResult}"/>.
 	/// </summary>
-	internal static class AwaitableUtility
+	public static class AwaitableUtility
 	{
+		static readonly AwaitableCompletionSource completionSource = new();
+
 		/// <summary>
-		/// Gets an <see cref="Awaitable{TResult}"/> that's completed with the specified result.
+		/// Gets an <see cref="Awaitable"/> that has already <see cref="Awaitable.IsCompleted">completed</see>.
+		/// </summary>
+		public static Awaitable CompletedAwaitable
+		{
+			get
+			{
+				completionSource.SetResult();
+				var awaitable = completionSource.Awaitable;
+				completionSource.Reset();
+				return awaitable;
+			}
+		}
+
+		/// <summary>
+		/// Gets an <see cref="Awaitable{TResult}"/> that has already completed with the specified result.
 		/// </summary>
 		/// <typeparam name="TResult"> The type of the result returned by the awaitable. </typeparam>
 		/// <param name="result"> The result to store into the completed awaitable. </param>
